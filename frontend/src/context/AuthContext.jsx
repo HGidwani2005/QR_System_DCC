@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
-import { auth, googleProvider } from '../firebase';
+import { auth, microsoftProvider } from '../firebase';
 import api from '../api';
 import toast from 'react-hot-toast';
 
@@ -50,9 +50,9 @@ export function AuthProvider({ children }) {
     }
   }
 
-  async function loginWithGoogle() {
+  async function loginWithMicrosoft() {
     try {
-      const result = await signInWithPopup(auth, googleProvider);
+      const result = await signInWithPopup(auth, microsoftProvider);
       const email = result.user.email || '';
       if (!email.endsWith(`@${ALLOWED_DOMAIN}`)) {
         toast.error(`Only @${ALLOWED_DOMAIN} emails are allowed.`);
@@ -91,7 +91,7 @@ export function AuthProvider({ children }) {
       profileLoading,
       isAdmin,
       profileComplete,
-      loginWithGoogle,
+      loginWithMicrosoft,
       logout,
       saveProfile,
       fetchProfile,

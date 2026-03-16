@@ -1,16 +1,24 @@
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom'; // Added useNavigate import
+import { useState } from 'react'; // Added useState import
 
 export default function LoginPage() {
-  const { loginWithGoogle } = useAuth();
+  const { loginWithMicrosoft } = useAuth(); // Changed loginWithGoogle to loginWithMicrosoft
+  const navigate = useNavigate(); // Added navigate hook
+  const [isLoading, setIsLoading] = useState(false); // Added isLoading state
 
-  async function handleLogin() {
+  const handleLogin = async () => { // Modified handleLogin to an arrow function and added isLoading logic
+    setIsLoading(true);
     try {
-      await loginWithGoogle();
+      await loginWithMicrosoft();
+      // Optionally navigate on successful login, though AuthContext might handle this
     } catch (e) {
       toast.error('Login failed. Please try again.');
+    } finally {
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <div className="font-display bg-background-light min-h-screen flex items-center justify-center p-4 sm:p-8">

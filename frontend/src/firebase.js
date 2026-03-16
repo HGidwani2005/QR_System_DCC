@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, OAuthProvider } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -12,11 +12,11 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-export const googleProvider = new GoogleAuthProvider();
-
-// Restrict to Bennett University domain
-googleProvider.setCustomParameters({
-  hd: import.meta.env.VITE_ALLOWED_DOMAIN || 'bennett.edu.in',
+export const microsoftProvider = new OAuthProvider('microsoft.com');
+microsoftProvider.setCustomParameters({
+  tenant: 'common',
+  prompt: 'consent',
+  login_hint: '@bennett.edu.in'
 });
 
 export default app;
