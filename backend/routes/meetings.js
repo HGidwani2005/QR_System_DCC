@@ -7,7 +7,7 @@ const { verifyToken, requireAdmin } = require('../middleware/auth');
 require('dotenv').config();
 
 const QR_EXPIRY_MINUTES = parseInt(process.env.QR_EXPIRY_MINUTES || '10');
-const FRONTEND_URL = process.env.ALLOWED_ORIGIN || 'http://localhost:5173';
+const FRONTEND_URL = process.env.FRONTEND_URL || process.env.ALLOWED_ORIGIN || 'http://localhost:5173';
 
 function generateQRExpiry() {
   const expiry = new Date();
