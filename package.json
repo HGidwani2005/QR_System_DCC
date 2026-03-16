@@ -1,0 +1,14 @@
+{
+  "name": "dcc-attendance-system",
+  "version": "1.0.0",
+  "description": "Dean Career Cloud - Full-Stack Attendance Management System",
+  "scripts": {
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "install:all": "cd backend && npm install && cd ../frontend && npm install",
+    "start:backend": "cd backend && npm start",
+    "start:frontend": "cd frontend && npm run dev"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
